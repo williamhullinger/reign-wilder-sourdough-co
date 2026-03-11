@@ -35,10 +35,8 @@ img {
   z-index: 1000;
   background: #f6f3ee;
   border-bottom: 1px solid #e6dfd5;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  min-height: 0px;
-  overflow: visible
+  
+  height: 220px;
 }
 
 .nav.container {
@@ -227,10 +225,6 @@ img {
   box-sizing: border-box;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
 
 /* --HERO-- */
 .hero {
@@ -238,7 +232,6 @@ body {
   width: 100%;
   min-height: 420px;
   height: 70vh;
-  overflow: hidden;
   z-index: 1;
 }
 
@@ -713,8 +706,8 @@ RESPONSIVE
 
   .hero {
     position: relative !important;
-    height: 520px !important;
-    min-height: 520px !important;
+    height: 560px !important;
+    min-height: 560px !important;
     overflow: clip !important;
     z-index: 1 !important;
   }
@@ -729,13 +722,13 @@ RESPONSIVE
 
   .hero h1 {
     position: absolute !important;
-    top: 46% !important;
+    top: 30% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     width: 88% !important;
     margin: 0 !important;
-    font-size: 3rem !important;
-    line-height: 0.95 !important;
+    font-size: 2.35rem !important;
+    line-height: 1.0 !important;
     text-align: center !important;
     z-index: 2 !important;
   }
@@ -743,12 +736,12 @@ RESPONSIVE
   .hero p {
     position: absolute !important;
     left: 50% !important;
-    bottom: 78px !important;
+    bottom: 70px !important;
     transform: translateX(-50%) !important;
-    width: 84% !important;
+    width: 82% !important;
     margin: 0 !important;
-    font-size: 1rem !important;
-    line-height: 1.35 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.25 !important;
     text-align: center !important;
     z-index: 2 !important;
   }
@@ -761,11 +754,22 @@ RESPONSIVE
     left: 50% !important;
     transform: translateX(-50%) !important;
     z-index: 2 !important;
-    bottom: 120px !important;
-    padding: 10px 22px !important;
-    font-size: 0.95rem !important;
+    bottom: 105px !important;
+    padding: 8px 18px !important;
+    font-size: 0.82rem !important;
     width: auto !important;
-    max-width: 80% !important;
+    max-width: 72% !important;
+    border-radius: 12px;
   }
 }
 
+.intro__heading {
+  font-size: 2.2 rem;
+  line-height: 1.2;
+  padding: 0 20px
+}
+
+.intro__message {
+  font-size: 1rem;
+  padding: 0 20px;
+}

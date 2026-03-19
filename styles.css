@@ -298,7 +298,7 @@ img {
 /* --INTRO-- */
 
 .intro {
-  padding: 60px 0;
+  padding: 60px 20px;
   background: #553e27;
   text-align: center;
   display: grid;
@@ -771,4 +771,15 @@ RESPONSIVE
 .intro__message {
   font-size: 1rem;
   padding: 0 20px;
+}
+
+.intro {
+  padding: 60px 16px;
+}
+
+.purity__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 12px;
+  text-align: center;
 }

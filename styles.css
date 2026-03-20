@@ -563,17 +563,7 @@ FOOTER
   padding: 60px 0;
   background: #2b2b2b;
   color: white;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-}
-
-.footer-nav ul {
-  display: grid;
-  gap: 10px;
+  text-align: center;
 }
 
 .footer-bottom {

@@ -113,6 +113,23 @@
     text-decoration: underline;
 }
 
+/* -------------------------
+FOOTER
+------------------------- */
+
+.site-footer {
+  padding: 60px 0;
+  background: #2b2b2b;
+  color: white;
+  text-align: center;
+}
+
+.footer-bottom {
+  margin-top: 40px;
+  font-size: 14px;
+  opacity: .7;
+}
+
 
 /* ========================================
    Responsive

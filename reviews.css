@@ -517,31 +517,6 @@
    FOOTER SUPPORT
 ========================= */
 
-.site-footer {
-  padding: 3rem 0;
-  text-align: center;
-  background: #2a1f18;
-}
-
-.site-footer__brand {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #f6ede4;
-}
-
-.site-footer__text {
-  max-width: 650px;
-  margin: 0 auto 0.75rem;
-  line-height: 1.7;
-  color: #d9c7b5;
-}
-
-.site-footer__copy {
-  margin: 0;
-  font-size: 0.95rem;
-  color: #bda996;
-}
 
 /* =========================
    RESPONSIVE
@@ -604,29 +579,4 @@
   .highlight-card {
     padding: 1.4rem;
   }
-}
-
-
-
-
-
-
-
-
-
-/* -------------------------
-FOOTER
-------------------------- */
-
-.site-footer {
-  padding: 60px 0;
-  background: #2b2b2b;
-  color: white;
-  text-align: center;
-}
-
-.footer-bottom {
-  margin-top: 40px;
-  font-size: 14px;
-  opacity: .7;
 }

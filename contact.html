@@ -24,7 +24,7 @@
 <nav class="nav container">
 
 <div class="nav__social">
-<a class="nav__social-link" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook" title="Facebook">
+<a class="nav__social-link" href="https://www.facebook.com/share/14Sephk4YwH/?mibexid=wwXlfr" target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook" title="Facebook">
 <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
 </a>
 
@@ -70,14 +70,93 @@
 </nav>
 </header>
 
+<main class="contact container">
 
+<section class="contact-hero">
+  <div class="container">
+    <p class="contact__eyebrow">Get in Touch</p>
+    <h1 class="contact__title">We'd love to hear from you</h1>
+    <p class="contact__text">
+      Whether you're placing an order, asking a question, or just reaching out —
+      we're here to help.
+    </p>
+  </div>
+</section>
 
+<section class="contact">
+  <div class="container contact__layout">
 
+    <!-- FORM -->
+    <div class="contact__form-wrapper">
+      <form class="contact__form" name="contact" method="POST" data-netlify="true">
+        
+        <input type="hidden" name="form-name" value="contact">
 
+        <div class="contact__group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
 
+        <div class="contact__group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
 
+        <div class="contact__group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
 
+        <button type="submit" class="btn__secondary contact__button">
+          Send Message
+        </button>
 
+      </form>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="contact__info">
+      <h2>Contact Details</h2>
+
+      <p>
+        Reach out directly or follow along — we're always baking something new.
+      </p>
+
+      <ul class="contact__details">
+        <li><strong>Phone:</strong> (417) 413-1432</li>
+        <li><strong>Email:</strong> hello@reignwilder.com</li>
+        <li><strong>Location:</strong> Springfield, Missouri</li>
+      </ul>
+
+      <div class="contact__social">
+        <a href="https://www.facebook.com/share/14Sephk4YwH/?mibexid=wwXlfr" aria-label="facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+        </a>
+            <a href="#" aria-label="instagram">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact-cta">
+  <div class="container">
+    <div class="contact-cta__panel">
+      <p class="contact-cta__eyebrow">Freshly Baked</p>
+      <h2 class="contact-cta__title">Custom orders & weekly bakes available</h2>
+      <p class="contact-cta__text">
+        Let us know what you're looking for and we'll get back to you as soon as possible.
+      </p>
+      <a class="btn__secondary contact-cta__button" href="menu.html">
+        View Menu
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <footer class="site-footer">
 

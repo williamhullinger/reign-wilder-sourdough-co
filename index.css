@@ -128,7 +128,7 @@
 
 .special__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(320px, 420px));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-content: center;
   gap: 25px;
 

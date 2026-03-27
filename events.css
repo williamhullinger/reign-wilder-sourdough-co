@@ -1,0 +1,270 @@
+/* -------------------------
+EVENTS PAGE
+------------------------- */
+
+/* HERO */
+.events__lead {
+  margin: 0;
+}
+
+/* Intro */
+.events-intro {
+  background: #553e27;
+  color: #fff;
+  padding: 56px 20px 64px;
+  text-align: center;
+  margin-top: -2px;
+}
+
+.events-intro__eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d7b897;
+}
+
+.events-intro__title {
+  margin: 0 0 14px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  color: #fff;
+}
+
+.events__lead {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: #f3e8db;
+}
+
+.events__lead a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* FEATURED EVENT */
+.events-feature {
+  padding: 80px 0;
+  background: #efe7da;
+}
+
+.events-section__title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.events-feature__story {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.events-feature__location {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.05rem;
+}
+
+.events-dates {
+  max-width: 700px;
+  margin: 30px auto 0;
+  text-align: center;
+}
+
+.events-dates h3 {
+  margin: 0 0 18px;
+  font-size: 1.5rem;
+}
+
+.events-dates ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.events-dates li {
+  display: inline-block;
+  background: #f5efe6;
+  padding: 12px 18px;
+  border-radius: 10px;
+  min-width: 220px;
+  width: auto;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+
+/*Gallery*/
+.events-gallery {
+  padding: 80px 0;
+  background: #fffaf4;
+}
+
+.events-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.events-gallery__item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.events-gallery__item img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+/* visitor info */
+.events-visit {
+  padding: 80px 0;
+  background: #efe7da;
+}
+
+.events-visit__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.events-visit__card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.events-visit__card h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.events-visit__card p {
+  margin: 0;
+  line-height: 1.7;
+  color: #5f4a3a;
+}
+
+/* EVENTS GRID */
+.events-list {
+  padding: 80px 0;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.event-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  display: grid;
+  gap: 12px;
+}
+
+.event-card h3 {
+  font-size: 1.6rem;
+  margin: 0 0 6px;
+}
+
+.event-card p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.event-card__text {
+  margin-top: 6px;
+  color: #5f4a3a;
+}
+
+.event-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.event-card__btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #7b5d3f;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease;
+}
+
+.event-card__btn:hover {
+  background: #946f49;
+}
+
+.event-card__btn--secondary {
+  background: transparent;
+  color: #7b5d3f;
+  border: 1px solid #c6ad93;
+}
+
+.event-card__btn--secondary:hover {
+  background: rgba(123, 93, 63, 0.08);
+}
+
+.event-card__btn--calendar {
+  background: #f5efe6;
+  color: #5f4a3a;
+  border: 1px solid #dcc9b5;
+}
+
+.event-card__btn--calendar:hover {
+  background: #efe4d6;
+}
+
+/* -------------------------
+RESPONSIVE
+------------------------- */
+
+@media (max-width: 900px) {
+  .events-grid,
+  .events-gallery__grid,
+  .events-visit__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .events__title {
+    font-size: 2.4rem;
+  }
+
+  .events-section__title {
+    font-size: 2rem;
+  }
+
+  .events-feature__story {
+    font-size: 1rem;
+    padding: 0 16px;
+  }
+}

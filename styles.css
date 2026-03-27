@@ -443,4 +443,12 @@ RESPONSIVE
   .nav__links {
     gap: 36px !important;
   }
+
+  .nav__links--left {
+    margin-right: 0 !important;
+  }
+
+  .nav__links--right {
+    margin-left: 0 !important;
+  }
 }

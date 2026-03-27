@@ -285,6 +285,13 @@ FOOTER
 }
 
 /* -------------------------
+mobile menu hidden by default
+------------------------- */
+.mobile-menu {
+  display: none;
+}
+
+/* -------------------------
 RESPONSIVE
 ------------------------- */
 

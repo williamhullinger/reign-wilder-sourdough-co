@@ -24,9 +24,18 @@ if (navToggle && mobileMenu) {
     const isOpen = mobileMenu.classList.toggle("is-open");
     navToggle.setAttribute("aria-expanded", isOpen);
   });
-}
+
+  // close mobile menu when clicking outside of it
+  document.addEventListener("click", (event) => {
+    const isClickInsideMenu = 
+    mobileMenu.contains(event.target) || navToggle.contains(event.target);
+
+    if (!isClickInsideMenu && mobileMenu.classList.contains("is-open")) {
+      mobileMenu.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", false);
     }
   });
+}
 
 
 // ================================
@@ -45,9 +54,10 @@ fetch("components/footer.html")
       // Footer copyright year
       const year = document.getElementById("year");
 
-      if (year) {
-        year.textContent = new Date().getFullYear();
+        if (year) {
+          year.textContent = new Date().getFullYear();
+        }
       }
+    });
     }
   });
-

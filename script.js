@@ -12,20 +12,19 @@ fetch("components/header.html")
       headerPlaceholder.innerHTML = data;
 
       // ================================
-      // MOBILE NAVIGATION
-      // ================================
+// MOBILE NAVIGATION
+// ================================
 
-      // Mobile navigation toggle (hamburger menu)
-      const navToggle = document.querySelector(".nav__toggle");
-      const leftLinks = document.querySelector(".nav__links--left");
-      const rightLinks = document.querySelector(".nav__links--right");
+// Mobile navigation toggle (hamburger menu)
+const navToggle = document.querySelector(".nav__toggle");
+const mobileMenu = document.querySelector(".mobile-menu");
 
-      if (navToggle && leftLinks && rightLinks) {
-        navToggle.addEventListener("click", () => {
-          leftLinks.classList.toggle("is-open");
-          rightLinks.classList.toggle("is-open");
-        });
-      }
+if (navToggle && mobileMenu) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = mobileMenu.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", isOpen);
+  });
+}
     }
   });
 

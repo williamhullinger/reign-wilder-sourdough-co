@@ -13,12 +13,11 @@
 </div>
 
 <ul class="nav__links nav__links--left">
-<li><a class="nav__link" href="index.html">Home</a></li>
-<li><a class="nav__link" href="menu.html">Menu</a></li>
-<li><a class="nav__link" href="shop.html">Shop</a></li>
-<li><a class="nav__link" href="events.html">Events</a></li>
-<li><a class="nav__link" href="reviews.html">Reviews</a></li>
-
+  <li><a class="nav__link" href="index.html">Home</a></li>
+  <li><a class="nav__link" href="menu.html">Menu</a></li>
+  <li><a class="nav__link" href="shop.html">Shop</a></li>
+  <li><a class="nav__link" href="events.html">Events</a></li>
+  <li><a class="nav__link" href="reviews.html">Reviews</a></li>
 </ul>
 
 <a href="index.html" class="nav__brand">
@@ -26,11 +25,11 @@
 </a>
 
 <ul class="nav__links nav__links--right">
-<li><a class="nav__link" href="guides.html">Guides</a></li>
-<li><a class="nav__link" href="recipies.html">Recipies</a></li>
-<li><a class="nav__link" href="tools.html">Tools</a></li>
-<li><a class="nav__link" href="contact.html">Contact</a></li>
-<li><a class="nav__link" href="about.html">About</a></li>
+  <li><a class="nav__link" href="guides.html">Guides</a></li>
+  <li><a class="nav__link" href="recipies.html">Recipies</a></li>
+  <li><a class="nav__link" href="tools.html">Tools</a></li>
+  <li><a class="nav__link" href="contact.html">Contact</a></li>
+  <li><a class="nav__link" href="about.html">About</a></li>
 </ul>
 
 <div class="nav__utilities">
@@ -42,9 +41,29 @@
 </a>
 
 
-<button class="nav__toggle" aria-label="Open menu">
+<button 
+  class="nav__toggle" 
+  aria-label="Open menu"
+  aria-expanded="false"
+  aria-controls="mobile-menu"
+  >
   <i class="fa-solid fa-bars"></i>
 </button>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu__list">
+    <li><a class="mobile-menu__link" href="index.html">Home</a></li>
+    <li><a class="mobile-menu__link" href="menu.html">Menu</a></li>
+    <li><a class="mobile-menu__link" href="shop.html">Shop</a></li>
+    <li><a class="mobile-menu__link" href="events.html">Events</a></li>
+    <li><a class="mobile-menu__link" href="reviews.html">Reviews</a></li>
+    <li><a class="mobile-menu__link" href="guides.html">Guides</a></li>
+    <li><a class="mobile-menu__link" href="recipies.html">Recipies</a></li>
+    <li><a class="mobile-menu__link" href="tools.html">Tools</a></li>
+    <li><a class="mobile-menu__link" href="contact.html">Contact</a></li>
+    <li><a class="mobile-menu__link" href="about.html">About</a></li>
+  </ul>
+</div>
 
 </nav>
 </header>

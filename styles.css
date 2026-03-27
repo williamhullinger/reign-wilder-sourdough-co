@@ -439,3 +439,8 @@ RESPONSIVE
     pointer-events: none !important;
   }
 }
+@media (max-width: 1400px) {
+  .nav__links {
+    gap: 36px !important;
+  }
+}

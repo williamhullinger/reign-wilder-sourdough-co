@@ -265,9 +265,14 @@
   gap: 10px;
 }
 
+/* -------------------------
+   MENU GALLERY CAROUSEL
+------------------------- */
+
 .menu-gallery {
   padding: 90px 0;
   background: #fffaf4;
+  overflow: hidden;
 }
 
 .menu-gallery__header {
@@ -299,51 +304,96 @@
   color: #5f4a3a;
 }
 
-.menu-gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+.menu-carousel {
+  position: relative;
 }
 
-.menu-gallery__item {
-  overflow: hidden;
-  border-radius: 16px;
-  background: #efe7da;
-  box-shadow: 0 10px 24px rgba(53, 37, 22, 0.08);
-}
-
-.menu-gallery__item img {
+.menu-carousel__viewport {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.menu-carousel__track {
+  display: flex;
+  align-items: center;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+.menu-carousel__slide {
+  flex: 0 0 52%;
+  flex-shrink: 0;
+  padding: 0 12px;
+  margin: 0;
+  opacity: 0.5;
+  transform: scale(0.92);
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.menu-carousel__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* fallback if JS fails */
+.menu-carousel__slide:first-child {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.menu-carousel__slide img {
+  width: 100%;
+  height: 420px;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(53, 37, 22, 0.1);
 }
 
-.menu-gallery__item:hover img {
-  transform: scale(1.04);
+.menu-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
 }
 
-@media (max-width: 1100px) {
-  .menu-gallery__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.menu-carousel__dot {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 999px;
+  background: #d7b897;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-@media (max-width: 768px) {
+.menu-carousel__dot.is-active {
+  background: #8d5c2c;
+  transform: scale(1.15);
+}
+
+@media (max-width: 900px) {
   .menu-gallery {
     padding: 64px 0;
   }
 
-  .menu-gallery__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+  .menu-carousel__slide {
+    flex: 0 0 72%;
+    padding: 0 8px;
+  }
+
+  .menu-carousel__slide img {
+    height: 340px;
   }
 }
 
-@media (max-width: 520px) {
-  .menu-gallery__grid {
-    grid-template-columns: 1fr;
+@media (max-width: 640px) {
+  .menu-carousel__slide {
+    flex: 0 0 84%;
+  }
+
+  .menu-carousel__slide img {
+    height: 280px;
   }
 }
 

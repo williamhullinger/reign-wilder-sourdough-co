@@ -84,7 +84,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 135%;
+  width: 38%;
   height: 100%;
   background: rgba(141, 92, 44, 0.05);
   z-index: 0;
@@ -235,7 +235,8 @@
   font-size: 1rem;
   font-weight: 700;
   color: #8d5c2c;
-  white-space: nowrap;
+  white-space: normal;
+  line-height: 1.5;
 }
 
 .menu-card__text {
@@ -453,6 +454,10 @@
   background: #e9dfd2;
   color: #6b5848;
   border-color: #d8c8b7;
+}
+
+.menu-card__price {
+  font-size: 9.98rem;
 }
 
 @media (max-width: 1100px) {

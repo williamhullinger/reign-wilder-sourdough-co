@@ -240,6 +240,100 @@ function initCarousel(config) {
   startAutoplay();
 }
 
+
+// menu modal
+function initMenuModal() {
+  const modal = document.getElementById("menu-modal");
+  const image = document.getElementById("menu-modal-image");
+  const title = document.getElementById("menu-modal-title");
+  const eyebrow = document.getElementById("menu-modal-eyebrow");
+  const price = document.getElementById("menu-modal-price");
+  const text = document.getElementById("menu-modal-text");
+  const actions = document.getElementById("menu-modal-actions");
+
+  if (!modal || !title || !eyebrow || !price || !text || !actions) return;
+
+  function closeMenuModal() {
+    modal.hidden = true;
+    actions.innerHTML = "";
+  }
+
+  function openMenuModal(trigger) {
+    if (image) {
+      image.src = trigger.dataset.image || "";
+      image.alt = trigger.dataset.imageAlt || trigger.dataset.title || "";
+    }
+
+    eyebrow.textContent = trigger.dataset.eyebrow || "";
+    title.textContent = trigger.dataset.title || "";
+    price.textContent = trigger.dataset.price || "";
+    text.textContent = trigger.dataset.text || "";
+
+    actions.innerHTML = "";
+
+// ACTION 1
+const label1 = trigger.getAttribute("data-action-1-label");
+const href1 = trigger.getAttribute("data-action-1-href");
+const variant1 = trigger.getAttribute("data-action-1-variant") || "primary";
+
+if (label1 && href1) {
+  const link1 = document.createElement("a");
+  link1.href = href1;
+  link1.textContent = label1;
+
+  if (variant1 === "secondary") {
+    link1.className = "menu-btn menu-btn--secondary";
+  } else {
+    link1.className = "menu-btn menu-btn--primary";
+  }
+
+  actions.appendChild(link1);
+}
+
+// ACTION 2
+const label2 = trigger.getAttribute("data-action-2-label");
+const href2 = trigger.getAttribute("data-action-2-href");
+const variant2 = trigger.getAttribute("data-action-2-variant") || "primary";
+
+if (label2 && href2) {
+  const link2 = document.createElement("a");
+  link2.href = href2;
+  link2.textContent = label2;
+
+  if (variant2 === "secondary") {
+    link2.className = "menu-btn menu-btn--secondary";
+  } else {
+    link2.className = "menu-btn menu-btn--primary";
+  }
+
+  actions.appendChild(link2);
+}
+
+    modal.hidden = false;
+  }
+
+  document.addEventListener("click", (event) => {
+    const closeTrigger = event.target.closest("[data-menu-modal-close]");
+    if (closeTrigger) {
+      closeMenuModal();
+      return;
+    }
+
+    const trigger = event.target.closest("[data-menu-modal-trigger]");
+    if (!trigger) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    openMenuModal(trigger.closest(".menu-card"));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !modal.hidden) {
+      closeMenuModal();
+    }
+  });
+}
+
 // ================================
 // HEADER / FOOTER COMPONENTS
 // ================================
@@ -285,6 +379,7 @@ function loadFooter() {
 loadHeader();
 loadFooter();
 initEventModal();
+initMenuModal();
 
 initCarousel({
   carouselSelector: "[data-carousel]",

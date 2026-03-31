@@ -157,6 +157,14 @@
   background: #fff7ef;
 }
 
+.menu-category--featured .menu-card {
+  transform: scale(1.02);
+}
+
+.menu-category--featured .menu-card:hover {
+  transform: scale(1.04);
+}
+
 .menu-category__header {
   max-width: 760px;
   margin: 0 auto 40px;
@@ -178,8 +186,8 @@
 }
 
 .menu-grid--tight {
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  max-width: 760px;
+  grid-template-columns: 1fr;
+  max-width: 820px;
   margin: 0 auto;
 }
 
@@ -237,17 +245,20 @@
   color: #8d5c2c;
   white-space: normal;
   line-height: 1.5;
+  display: none;
 }
 
 .menu-card__text {
   color: #5f4a3a;
+  margin-bottom: 0;
 }
 
 .menu-card__note {
-  font-size: 0.9rem;
+  margin: 4px 0 0;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 0.92rem;
   color: #7a6654;
-  margin-top: 6px;
-  font-style: italic;
+  line-height: 1.6;
 }
 
 .menu-card__meta {
@@ -264,6 +275,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  padding-top: 4px;
+}
+
+.menu-card__actions .menu-btn {
+  width: 100%;
+  text-align: center;
 }
 
 .menu-card--clickable {
@@ -330,23 +347,22 @@
 
 .menu-modal__eyebrow {
   margin: 0 0 8px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #8d5c2c;
+  color: #d7b897;
 }
 
 .menu-modal__title {
   margin: 0 0 10px;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: 2rem;
   line-height: 1.12;
-  color: #2f2218;
 }
 
 .menu-modal__price {
   margin: 0 0 14px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #8d5c2c;
 }
@@ -362,8 +378,8 @@
 .menu-modal__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .menu-card--clickable {

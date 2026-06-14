@@ -86,7 +86,7 @@ exports.handler = async (event) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Reign & Wilder Orders <onboarding@resend.dev>",
+        from: "Reign & Wilder Orders <orders@reignandwilder.com>",
         to: ["hello@reignandwilder.com"],
         subject: `New Reign & Wilder Order - ${total}`,
         html: emailHtml,

@@ -11,14 +11,26 @@ exports.handler = async (event) => {
       throw new Error("Missing RESEND_API_KEY or SQUARE_ACCESS_TOKEN");
     }
 
-    const payload = JSON.parse(event.body || "{}");
-    const payment = payload?.data?.object?.payment;
+    const payload = JSON.parse(event.body || "{}"); 
+    const eventType = payload.type; 
+    const payment = payload?.data?.object?.payment; 
 
-    if (!payment || payment.status !== "COMPLETED") {
-      return {
-        statusCode: 200,
-        body: JSON.stringify({ message: "Ignored non-completed payment." }),
-      };
+    if (eventType !== "payment.updated") { 
+        return { 
+            statusCode: 200, 
+            body: JSON.stringify({ 
+                message: `Ignored event type: ${eventType}` 
+            }),
+          }; 
+        } 
+        
+    if (!payment || payment.status !== "COMPLETED") { 
+        return { 
+            statusCode: 200, 
+            body: JSON.stringify({ 
+                message: "Ignored non-completed payment." 
+            }), 
+        }; 
     }
 
     const orderId = payment.order_id;

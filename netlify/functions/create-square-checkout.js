@@ -17,13 +17,7 @@ exports.handler = async (event) => {
     }
 
     const body = JSON.parse(event.body || "{}");
-
-    const {
-      items = [],
-      customer = {},
-      fulfillment = {},
-      notes = "",
-    } = body;
+    const { items = [], customer = {}, fulfillment = {}, notes = "" } = body;
 
     if (!Array.isArray(items) || items.length === 0) {
       return {
@@ -55,9 +49,16 @@ exports.handler = async (event) => {
       };
     });
 
-    const subtotalCents = lineItems.reduce((total, item) => {
-      return total + item.base_price_money.amount * Number(item.quantity);
-    }, 0);
+    const metadataEntries = Object.entries({
+      customer_name: customer.name,
+      customer_email: customer.email,
+      customer_phone: customer.phone,
+      fulfillment_type: fulfillment.type,
+      preferred_date: fulfillment.date,
+      preferred_time: fulfillment.time,
+    })
+      .map(([key, value]) => [key, String(value || "").trim()])
+      .filter(([, value]) => value.length > 0);
 
     const orderNoteParts = [
       customer.name ? `Customer: ${customer.name}` : "",
@@ -99,14 +100,9 @@ exports.handler = async (event) => {
                 scope: "ORDER",
               },
             ],
-            metadata: {
-              customer_name: String(customer.name || ""),
-              customer_email: String(customer.email || ""),
-              customer_phone: String(customer.phone || ""),
-              fulfillment_type: String(fulfillment.type || ""),
-              preferred_date: String(fulfillment.date || ""),
-              preferred_time: String(fulfillment.time || ""),
-            },
+            ...(metadataEntries.length > 0 && {
+              metadata: Object.fromEntries(metadataEntries),
+            }),
             note: orderNoteParts.join(" | ").slice(0, 500),
           },
         }),
@@ -132,7 +128,6 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         checkoutUrl: data.payment_link.url,
         orderId: data.payment_link.order_id,
-        subtotalCents,
       }),
     };
   } catch (error) {

@@ -93,7 +93,7 @@ exports.handler = async (event) => {
       <p>${itemList || "No item details found."}</p>
 
       <h3>Notes</h3>
-      <p>${order.note || "No notes."}</p>
+      <p>${metadata.order_notes || order.notes || "No notes."}</p>
     `;
 
     const emailResponse = await fetch("https://api.resend.com/emails", {

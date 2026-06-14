@@ -58,6 +58,7 @@ exports.handler = async (event) => {
       preferred_date: fulfillment.date,
       preferred_time: fulfillment.time,
       standard_pickup_date: fulfillment.standardPickupDate,
+      order_notes: notes,
     })
       .map(([key, value]) => [key, String(value || "").trim()])
       .filter(([, value]) => value.length > 0);

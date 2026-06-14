@@ -3,8 +3,7 @@
 ========================= */
 
 const CART_STORAGE_KEY = "reignWilderCart";
-
-const TAX_RATE = 0.0825; // adjust later if needed
+const TAX_RATE = 0.0825;
 
 const cartItemsContainer = document.getElementById("cart-items");
 const cartEmpty = document.getElementById("cart-empty");
@@ -41,8 +40,47 @@ function formatMoney(amount) {
 
 function calculateSubtotal() {
   return cart.reduce((total, item) => {
-    return total + item.price * item.quantity;
+    return total + Number(item.price) * Number(item.quantity);
   }, 0);
+}
+
+function updateCartCount() {
+  const cartCount = document.getElementById("cart-count");
+  const floatingCartCount = document.getElementById("floating-cart-count");
+
+  const totalItems = cart.reduce((total, item) => {
+    return total + Number(item.quantity || 0);
+  }, 0);
+
+  [cartCount, floatingCartCount].forEach((count) => {
+    if (!count) return;
+
+    count.textContent = totalItems;
+    count.style.display = totalItems > 0 ? "inline-block" : "none";
+  });
+}
+
+function updateTotals() {
+  const subtotal = calculateSubtotal();
+  const tax = subtotal * TAX_RATE;
+  const total = subtotal + tax;
+
+  if (cartSubtotal) cartSubtotal.textContent = formatMoney(subtotal);
+  if (cartTax) cartTax.textContent = formatMoney(tax);
+  if (cartTotal) cartTotal.textContent = formatMoney(total);
+
+  if (cartOrderData) {
+    cartOrderData.value = JSON.stringify({
+      items: cart,
+      subtotal,
+      tax,
+      total,
+    });
+  }
+
+  if (checkoutButton) {
+    checkoutButton.disabled = cart.length === 0;
+  }
 }
 
 function renderCart() {
@@ -69,10 +107,13 @@ function renderCart() {
       
       <div class="cart-item__info">
         <h4>${item.name}</h4>
-        <p>${formatMoney(item.price)} each</p>
+        <p>${formatMoney(Number(item.price))} each</p>
         ${item.details ? `<p class="cart-item__details">${item.details}</p>` : ""}
-       
-        ${item.builderData ? `<button class="cart-item__edit" type="button" data-edit-cake-order="${item.id}">Edit Order</button>` : ""}
+        ${
+          item.builderData
+            ? `<button class="cart-item__edit" type="button" data-edit-cake-order="${item.id}">Edit Order</button>`
+            : ""
+        }
       </div>
 
       <div class="cart-item__controls">
@@ -101,46 +142,11 @@ function renderCart() {
   updateTotals();
 }
 
-function updateTotals() {
-  const subtotal = calculateSubtotal();
-  const tax = subtotal * TAX_RATE;
-  const total = subtotal + tax;
-
-  if (cartSubtotal) cartSubtotal.textContent = formatMoney(subtotal);
-  if (cartTax) cartTax.textContent = formatMoney(tax);
-  if (cartTotal) cartTotal.textContent = formatMoney(total);
-
-  if (cartOrderData) {
-    cartOrderData.value = JSON.stringify({
-      items: cart,
-      subtotal,
-      tax,
-      total
-    });
-  }
-
-  if (checkoutButton) {
-    checkoutButton.disabled = cart.length === 0;
-  }
-}
-
-function updateCartCount() {
-  const cartCount = document.getElementById("cart-count");
-  if (!cartCount) return;
-
-  const totalItems = cart.reduce((total, item) => {
-    return total + Number(item.quantity || 0);
-  }, 0);
-
-  cartCount.textContent = totalItems;
-  cartCount.style.display = totalItems > 0 ? "inline-block" : "none";
-}
-
 function updateQuantity(id, quantity) {
   const item = cart.find((cartItem) => cartItem.id === id);
   if (!item) return;
 
-  item.quantity = Math.max(1, quantity);
+  item.quantity = Math.max(1, Number(quantity) || 1);
   saveCart();
   renderCart();
 }
@@ -162,7 +168,9 @@ function addToCart(product) {
       name: product.name,
       price: Number(product.price),
       image: product.image,
-      quantity: product.quantity || 1
+      quantity: product.quantity || 1,
+      details: product.details || "",
+      builderData: product.builderData || null,
     });
   }
 
@@ -174,14 +182,16 @@ document.addEventListener("click", (event) => {
   const removeButton = event.target.closest("[data-cart-remove]");
   const editButton = event.target.closest("[data-edit-cake-order]");
 
-if (editButton) {
-  const item = cart.find((cartItem) => cartItem.id === editButton.dataset.editCakeOrder);
+  if (editButton) {
+    const item = cart.find(
+      (cartItem) => cartItem.id === editButton.dataset.editCakeOrder
+    );
 
-  if (!item) return;
+    if (!item) return;
 
-  localStorage.setItem("editCakeOrder", JSON.stringify(item));
-  window.location.href = "cake-pop-builder.html";
-}
+    localStorage.setItem("editCakeOrder", JSON.stringify(item));
+    window.location.href = "cake-pop-builder.html";
+  }
 
   if (addButton) {
     const product = {
@@ -189,12 +199,14 @@ if (editButton) {
       name: addButton.dataset.name,
       price: addButton.dataset.price,
       image: addButton.dataset.image,
-      quantity: Number(addButton.dataset.quantity) || 1
+      quantity: Number(addButton.dataset.quantity) || 1,
+      details: addButton.dataset.details || "",
     };
 
     addToCart(product);
 
     addButton.textContent = "Added";
+
     setTimeout(() => {
       addButton.textContent = "Add to Cart";
     }, 1200);
@@ -214,10 +226,57 @@ document.addEventListener("input", (event) => {
 });
 
 if (checkoutButton) {
-  checkoutButton.addEventListener("click", () => {
+  checkoutButton.addEventListener("click", async () => {
     if (cart.length === 0) return;
 
-    alert("Next step: connect this button to Square checkout.");
+    checkoutButton.disabled = true;
+    checkoutButton.textContent = "Opening Checkout...";
+
+    const customer = {
+      name: document.getElementById("cart-name")?.value || "",
+      email: document.getElementById("cart-email")?.value || "",
+      phone: document.getElementById("cart-phone")?.value || "",
+    };
+
+    const fulfillment = {
+      type: document.getElementById("cart-fulfillment")?.value || "",
+      date: document.getElementById("cart-date")?.value || "",
+      time: document.getElementById("cart-time")?.value || "",
+    };
+
+    const notes = document.getElementById("cart-notes")?.value || "";
+
+    try {
+      const response = await fetch("/.netlify/functions/create-square-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: cart,
+          customer,
+          fulfillment,
+          notes,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.checkoutUrl) {
+        throw new Error(data.error || "Checkout failed.");
+      }
+
+      window.location.href = data.checkoutUrl;
+    } catch (error) {
+      alert(
+        "Checkout could not be started. Please try again or contact Reign & Wilder."
+      );
+
+      checkoutButton.disabled = false;
+      checkoutButton.textContent = "Continue to Checkout";
+
+      console.error(error);
+    }
   });
 }
 
@@ -225,23 +284,3 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart();
   updateCartCount();
 });
-
-
-/* =========================
-    CART COUNT IN HEADER
-========================= */
-function updateCartCount() {
-  const cartCount = document.getElementById("cart-count");
-  const floatingCartCount = document.getElementById("floating-cart-count");
-
-  const totalItems = cart.reduce((total, item) => {
-    return total + Number(item.quantity || 0);
-  }, 0);
-
-  [cartCount, floatingCartCount].forEach((count) => {
-    if (!count) return;
-
-    count.textContent = totalItems;
-    count.style.display = totalItems > 0 ? "inline-block" : "none";
-  });
-}

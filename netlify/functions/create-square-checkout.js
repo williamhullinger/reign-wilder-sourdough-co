@@ -54,6 +54,7 @@ exports.handler = async (event) => {
       customer_email: customer.email,
       customer_phone: customer.phone,
       fulfillment_type: fulfillment.type,
+      order_type: fulfillment.orderType,
       preferred_date: fulfillment.date,
       preferred_time: fulfillment.time,
       standard_pickup_date: fulfillment.standardPickupDate,

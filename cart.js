@@ -225,12 +225,7 @@ document.addEventListener("input", (event) => {
   updateQuantity(qtyInput.dataset.cartQty, Number(qtyInput.value));
 });
 
-if (checkoutButton) {
-  checkoutButton.addEventListener("click", async () => {
-    if (cart.length === 0) return;
-
-    checkoutButton.disabled = true;
-    checkoutButton.textContent = "Opening Checkout...";
+if (checkoutButton) { checkoutButton.addEventListener("click", async () => { if (cart.length === 0) return; const detailsForm = document.getElementById("cart-details-form"); if (detailsForm && !detailsForm.checkValidity()) { detailsForm.scrollIntoView({ behavior: "smooth", block: "center", }); setTimeout(() => { detailsForm.reportValidity(); }, 350); return; } checkoutButton.disabled = true; checkoutButton.textContent = "Opening Checkout...";
 
     const customer = {
       name: document.getElementById("cart-name")?.value || "",
@@ -240,6 +235,7 @@ if (checkoutButton) {
 
     const fulfillment = {
       type: document.getElementById("cart-fulfillment")?.value || "",
+      orderType: document.getElementById("cart-order-type")?.value || "",
       date: document.getElementById("cart-date")?.value || "",
       time: document.getElementById("cart-time")?.value || "",
       standardPickupDate:

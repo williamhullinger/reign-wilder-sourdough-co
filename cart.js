@@ -242,6 +242,8 @@ if (checkoutButton) {
       type: document.getElementById("cart-fulfillment")?.value || "",
       date: document.getElementById("cart-date")?.value || "",
       time: document.getElementById("cart-time")?.value || "",
+      standardPickupDate:
+        document.getElementById("cart-standard-pickup-date")?.value || "",
     };
 
     const notes = document.getElementById("cart-notes")?.value || "";
@@ -280,7 +282,58 @@ if (checkoutButton) {
   });
 }
 
+/* =========================
+   PICKUP DATE CALCULATOR
+========================= */
+
+function getNextPickupSaturday() {
+  const now = new Date();
+
+  const day = now.getDay(); // 0=Sun, 1=Mon, 2=Tue, etc.
+  const hour = now.getHours();
+
+  const deadlinePassed =
+    day > 2 || (day === 2 && hour >= 18);
+
+  let pickupDate = new Date(now);
+
+  if (deadlinePassed) {
+    const daysUntilSaturday = ((6 - day + 7) % 7) + 7;
+    pickupDate.setDate(now.getDate() + daysUntilSaturday);
+  } else {
+    const daysUntilSaturday = (6 - day + 7) % 7;
+    pickupDate.setDate(now.getDate() + daysUntilSaturday);
+  }
+
+  return pickupDate;
+}
+
+function formatPickupDate(date) {
+  return date.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderCart();
   updateCartCount();
+
+  const pickupDisplay = document.getElementById("cart-pickup-date");
+  const pickupInput = document.getElementById("cart-standard-pickup-date");
+
+  if (pickupDisplay || pickupInput) {
+    const pickupDate = getNextPickupSaturday();
+    const formatted = formatPickupDate(pickupDate);
+
+    if (pickupDisplay) {
+      pickupDisplay.textContent = formatted;
+    }
+
+    if (pickupInput) {
+      pickupInput.value = formatted;
+    }
+  }
 });

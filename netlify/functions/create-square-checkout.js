@@ -56,19 +56,24 @@ exports.handler = async (event) => {
       fulfillment_type: fulfillment.type,
       preferred_date: fulfillment.date,
       preferred_time: fulfillment.time,
+      standard_pickup_date: fulfillment.standardPickupDate,
     })
       .map(([key, value]) => [key, String(value || "").trim()])
       .filter(([, value]) => value.length > 0);
 
     const orderNoteParts = [
-      customer.name ? `Customer: ${customer.name}` : "",
-      customer.email ? `Email: ${customer.email}` : "",
-      customer.phone ? `Phone: ${customer.phone}` : "",
-      fulfillment.type ? `Fulfillment: ${fulfillment.type}` : "",
-      fulfillment.date ? `Preferred date: ${fulfillment.date}` : "",
-      fulfillment.time ? `Preferred time: ${fulfillment.time}` : "",
-      notes ? `Notes: ${notes}` : "",
-    ].filter(Boolean);
+  customer.name ? `Customer: ${customer.name}` : "",
+  customer.email ? `Email: ${customer.email}` : "",
+  customer.phone ? `Phone: ${customer.phone}` : "",
+  fulfillment.type ? `Fulfillment: ${fulfillment.type}` : "",
+  fulfillment.orderType ? `Order Type: ${fulfillment.orderType}` : "",
+  fulfillment.standardPickupDate
+    ? `Standard Pickup: ${fulfillment.standardPickupDate}`
+    : "",
+  fulfillment.date ? `Requested Date: ${fulfillment.date}` : "",
+  fulfillment.time ? `Preferred Time: ${fulfillment.time}` : "",
+  notes ? `Notes: ${notes}` : "",
+].filter(Boolean);
 
     const idempotencyKey =
       crypto.randomUUID?.() ||

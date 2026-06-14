@@ -95,68 +95,101 @@
       </div>
     </section>
     <!-- CUSTOMER DETAILS -->
-    <section class="cart-details">
-      <div class="container">
-        <div class="cart-details__header">
-          <p class="cart-details__eyebrow">Order Details</p>
-          <h2>Pickup, Delivery, and Contact Information</h2>
-          <p>
-            Add your preferred order details below. This helps us confirm timing and availability for fresh baked goods.
+<section class="cart-details">
+  <div class="container">
+    <div class="cart-details__header">
+      <p class="cart-details__eyebrow">Order Details</p>
+      <h2>Pickup Schedule & Contact Information</h2>
+      <p>
+        Standard bakery orders must be placed by Tuesday at 6:00 PM and are available for pickup the following Saturday. Custom cake pop and event orders may request a different completion date.
+      </p>
+    </div>
+
+    <div class="cart-schedule-notice">
+      <h3>Standard Pickup Schedule</h3>
+      <p>
+        Your estimated pickup day is:
+        <strong id="cart-pickup-date">Calculating...</strong>
+      </p>
+      <p>
+        Orders placed after Tuesday at 6:00 PM will automatically move to the next available Saturday pickup.
+      </p>
+    </div>
+
+    <form class="cart-form" id="cart-details-form" name="cart-details" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="cart-details">
+      <input type="hidden" id="cart-order-data" name="cart_order_data">
+      <input type="hidden" id="cart-standard-pickup-date" name="standard_pickup_date">
+
+      <div class="cart-form__grid">
+        <div class="cart-form__group">
+          <label for="cart-name">Name</label>
+          <input id="cart-name" name="name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="cart-form__group">
+          <label for="cart-email">Email</label>
+          <input id="cart-email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="cart-form__group">
+          <label for="cart-phone">Phone</label>
+          <input id="cart-phone" name="phone" type="tel" autocomplete="tel" required>
+        </div>
+
+        <div class="cart-form__group">
+          <label for="cart-order-type">Order Type</label>
+          <select id="cart-order-type" name="order_type" required>
+            <option value="">Select one</option>
+            <option value="standard-saturday-pickup">Standard Saturday Pickup</option>
+            <option value="custom-cake-pops">Custom Cake Pops / Event Order</option>
+            <option value="need-to-discuss">Need to Discuss</option>
+          </select>
+        </div>
+
+        <div class="cart-form__group">
+          <label for="cart-fulfillment">Pickup or Delivery</label>
+          <select id="cart-fulfillment" name="fulfillment_preference" required>
+            <option value="">Select one</option>
+            <option value="pickup">Local Pickup</option>
+            <option value="delivery">Local Delivery / Meet-Up Request</option>
+            <option value="discuss">Need to Discuss</option>
+          </select>
+        </div>
+
+        <div class="cart-form__group">
+          <label for="cart-date">Requested Date</label>
+          <input id="cart-date" name="preferred_date" type="date">
+          <p class="cart-form__help">
+            Standard bakery orders are Saturday pickup only. Use this for custom cake pops or event requests.
           </p>
         </div>
-        <form class="cart-form" id="cart-details-form" name="cart-details" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="cart-details">
-          <input type="hidden" id="cart-order-data" name="cart_order_data">
-          <div class="cart-form__grid">
-            <div class="cart-form__group">
-              <label for="cart-name">Name</label>
-              <input id="cart-name" name="name" type="text" autocomplete="name" required>
-            </div>
-            <div class="cart-form__group">
-              <label for="cart-email">Email</label>
-              <input id="cart-email" name="email" type="email" autocomplete="email" required>
-            </div>
-            <div class="cart-form__group">
-              <label for="cart-phone">Phone</label>
-              <input id="cart-phone" name="phone" type="tel" autocomplete="tel">
-            </div>
-            <div class="cart-form__group">
-              <label for="cart-fulfillment">Pickup or Delivery</label>
-              <select id="cart-fulfillment" name="fulfillment_preference" required>
-                <option value="">Select one</option>
-                <option value="pickup">Local Pickup</option>
-                <option value="delivery">Local Delivery</option>
-                <option value="discuss">Need to Discuss</option>
-              </select>
-            </div>
-            <div class="cart-form__group">
-              <label for="cart-date">Preferred Date</label>
-              <input id="cart-date" name="preferred_date" type="date">
-            </div>
-            <div class="cart-form__group">
-              <label for="cart-time">Preferred Time Window</label>
-              <select id="cart-time" name="preferred_time">
-                <option value="">Select one</option>
-                <option value="morning">Morning</option>
-                <option value="midday">Midday</option>
-                <option value="afternoon">Afternoon</option>
-                <option value="evening">Evening</option>
-                <option value="flexible">Flexible</option>
-              </select>
-            </div>
-          </div>
-          <div class="cart-form__group">
-            <label for="cart-notes">Order Notes</label>
-            <textarea
-              id="cart-notes"
-              name="order_notes"
-              rows="5"
-              placeholder="Add pickup notes, delivery questions, special instructions, event timing, or anything else we should know."
-            ></textarea>
-          </div>
-        </form>
+
+        <div class="cart-form__group">
+          <label for="cart-time">Preferred Time Window</label>
+          <select id="cart-time" name="preferred_time">
+            <option value="">Select one</option>
+            <option value="morning">Morning</option>
+            <option value="midday">Midday</option>
+            <option value="afternoon">Afternoon</option>
+            <option value="evening">Evening</option>
+            <option value="flexible">Flexible</option>
+          </select>
+        </div>
       </div>
-    </section>
+
+      <div class="cart-form__group">
+        <label for="cart-notes">Order Notes</label>
+        <textarea
+          id="cart-notes"
+          name="order_notes"
+          rows="5"
+          placeholder="Add pickup notes, delivery questions, cake pop details, event timing, meet-up requests, or anything else we should know."
+        ></textarea>
+      </div>
+    </form>
+  </div>
+</section>
     <!-- CHECKOUT HELP -->
     <section class="cart-help">
       <div class="container cart-help__grid">

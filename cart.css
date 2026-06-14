@@ -319,6 +319,31 @@
   color: #5f4a3a;
 }
 
+.cart-schedule-notice { 
+  max-width: 900px; 
+  margin: 0 auto 28px; 
+  padding: 22px; 
+  border-radius: 16px; 
+  background: #fffaf4; 
+  border: 1px solid #e2d4c4; 
+  text-align: center; } 
+  
+.cart-schedule-notice h3 { 
+    margin: 0 0 8px; } 
+    
+.cart-schedule-notice p { 
+  margin: 0 0 8px; 
+  color: #5f4a3a; } 
+  
+.cart-schedule-notice p:last-child { 
+  margin-bottom: 0; } 
+  
+.cart-form__help { 
+  margin: 0; 
+  font-size: 0.9rem; 
+  color: #7a6654; 
+}
+
 /* =========================
    RESPONSIVE
 ========================= */

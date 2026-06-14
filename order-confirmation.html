@@ -86,7 +86,7 @@ exports.handler = async (event) => {
         body: JSON.stringify({
           idempotency_key: idempotencyKey,
           checkout_options: {
-            redirect_url: "https://reignandwilder.com/order-confirmation.html",
+            redirect_url: "https://reignandwilder.com/thank-you.html",
             ask_for_shipping_address: false,
           },
           order: {
@@ -141,3 +141,76 @@ exports.handler = async (event) => {
     };
   }
 };
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed | Reign & Wilder</title>
+
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <main class="section">
+    <div class="container">
+
+      <div class="card" style="max-width:800px;margin:0 auto;text-align:center;">
+
+        <p class="section-eyebrow">
+          ORDER RECEIVED
+        </p>
+
+        <h1>
+          Thank You For Your Order
+        </h1>
+
+        <p style="font-size:1.1rem;max-width:600px;margin:0 auto 2rem;">
+          Your payment has been successfully received and your order has been submitted.
+        </p>
+
+        <p style="max-width:600px;margin:0 auto 2rem;">
+          We will review your order details and contact you if we need any additional information regarding pickup, delivery, scheduling, or custom items.
+        </p>
+
+        <div style="margin:2rem 0;">
+          <a href="index.html" class="button">
+            Return Home
+          </a>
+        </div>
+
+        <hr style="margin:2rem 0;">
+
+        <h3>What Happens Next?</h3>
+
+        <div style="text-align:left;max-width:500px;margin:1.5rem auto;">
+          <p>✓ Order received</p>
+          <p>✓ Payment processed securely through Square</p>
+          <p>✓ Order reviewed by Reign & Wilder</p>
+          <p>✓ Pickup or delivery details confirmed if needed</p>
+          <p>✓ Fresh baked goodness prepared for your order</p>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    async function loadComponent(id, path) {
+      const response = await fetch(path);
+      const html = await response.text();
+      document.getElementById(id).innerHTML = html;
+    }
+
+    loadComponent("site-header", "components/header.html");
+    loadComponent("site-footer", "components/footer.html");
+  </script>
+
+</body>
+</html>

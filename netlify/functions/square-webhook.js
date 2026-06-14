@@ -51,14 +51,31 @@ exports.handler = async (event) => {
 
     const metadata = order.metadata || {};
 
+    const customerName = 
+    metadata.customer_name || 
+    payment.buyer_name || 
+     `${payment.billing_address?.first_name || ""} ${payment.billing_address?.last_name || ""}`.trim() ||
+    "Not provided";
+
+    const customerEmail =
+        metadata.customer_email ||
+        payment.buyer_email_address ||
+        "Not provided";
+
+    const customerPhone =
+        metadata.customer_phone ||
+        payment.buyer_phone_number ||
+        "Not provided";
+    
+
     const emailHtml = `
       <h2>New Reign & Wilder Order</h2>
 
       <h3>Customer</h3>
       <p>
-        <strong>Name:</strong> ${metadata.customer_name || "Not provided"}<br>
-        <strong>Email:</strong> ${metadata.customer_email || "Not provided"}<br>
-        <strong>Phone:</strong> ${metadata.customer_phone || "Not provided"}
+        <strong>Name:</strong> ${customerName}<br>
+        <strong>Email:</strong> ${customerEmail}<br>
+        <strong>Phone:</strong> ${customerPhone}
       </p>
 
       <h3>Order</h3>

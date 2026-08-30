@@ -350,6 +350,22 @@ FOOTER
   margin: 0;
 }
 
+.footer-credit {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-credit:hover,
+.footer-credit:focus-visible {
+  color: #f2d8ba;
+}
+
+.footer-credit:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
 /* -------------------------
 mobile menu hidden by default
 ------------------------- */
